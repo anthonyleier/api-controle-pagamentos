@@ -10,20 +10,6 @@ class Pagamento extends Model {
 
     protected $fillable = [
         'chave_nota',
-        'valor',
-        'data_hora'
+        'valor'
     ];
-
-    protected $casts = [
-        'data_hora' => 'datetime',
-    ];
-
-    public static function boot() {
-        parent::boot();
-
-        // Preencher automaticamente o campo com tempo atual
-        static::creating(function ($model) {
-            $model->data_hora = now();
-        });
-    }
 }

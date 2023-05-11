@@ -40,6 +40,7 @@ class PagamentoController extends Controller {
     public function update(Request $request, string $id) {
         $data = $request->all();
         $pagamento = Pagamento::findOrFail($id);
+        $pagamento->update($data);
         return new PagamentoResource($pagamento);
     }
 

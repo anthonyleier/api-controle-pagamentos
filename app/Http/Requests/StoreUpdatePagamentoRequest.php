@@ -4,13 +4,11 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreUpdatePagamentoRequest extends FormRequest
-{
+class StoreUpdatePagamentoRequest extends FormRequest {
     /**
      * Determine if the user is authorized to make this request.
      */
-    public function authorize(): bool
-    {
+    public function authorize(): bool {
         return true;
     }
 
@@ -19,10 +17,11 @@ class StoreUpdatePagamentoRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
-    public function rules(): array
-    {
-        return [
-            //
+    public function rules(): array {
+        $rules = [
+            'chave_nota' => 'required|size:29',
+            'valor' => 'required|numeric'
         ];
+        return $rules;
     }
 }
