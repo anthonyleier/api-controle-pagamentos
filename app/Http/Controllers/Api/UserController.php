@@ -19,4 +19,9 @@ class UserController extends Controller {
         $user = User::create($data);
         return new UserResource($user);
     }
+
+    public function show(string $id) {
+        $user = User::findOrFail($id);
+        return new UserResource($user);
+    }
 }
