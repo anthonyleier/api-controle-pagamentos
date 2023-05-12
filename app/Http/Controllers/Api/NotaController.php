@@ -14,7 +14,7 @@ class NotaController extends Controller {
     public function index() {
         try {
             $dados = $this->service->getAgrupamentoNotasPorCNPJ();
-            return response()->json($dados);
+            return response()->json($dados, 200);
         } catch (Exception $e) {
             return response()->json(['Ocorreu um erro no processamento das informações' => $e->getMessage()], 500);
         }
@@ -23,7 +23,7 @@ class NotaController extends Controller {
     public function show(string $cnpj) {
         try {
             $valores = $this->service->getValores($cnpj);
-            return response()->json($valores);
+            return response()->json($valores, 200);
         } catch (Exception $e) {
             return response()->json(['Ocorreu um erro no processamento das informações' => $e->getMessage()], 500);
         }
