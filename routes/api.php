@@ -16,4 +16,4 @@ Route::get('/notas', [NotaController::class, 'index']);
 
 // CRUD de Pagamentos e Usuários
 Route::apiResource('/pagamentos', PagamentoController::class);
-Route::apiResource('/users', UserController::class);
+Route::apiResource('/usuarios', UserController::class);

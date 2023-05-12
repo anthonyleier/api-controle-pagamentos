@@ -1,66 +1,94 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Azapfy Desafio
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+O Azapfy é uma empresa que transforma a gestão da entrega e comprovação, que hoje são totalmente manuais, em processos automatizados de alta performance e controle. Garantindo que elas recebam por o serviço realizado, no menor prazo possível, com o menor custo de operação e ainda identificando em real time todas as etapas do processo. Nesse teste você irá desenvolver uma API que faz controle de pagamento pelas entregas realizadas. Disponibilizamos uma API onde você irá consultar as notas fiscais para realizar o cálculo de pagamento.
 
-## About Laravel
+## Instalação
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Para a execução do PHP e do MySQL, resolvi utilizar o XAMPP para facilitar a execução do ambiente de desenvolvimento. Com essas ferramentas instaladas e configuradas corretamente, é necessário instalar as dependências do projeto, utilizando o Composer.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+`composer install`
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Faça uma cópia do arquivo .env.example na raiz do projeto e renomeie-o para .env. Abra o arquivo e configure as variáveis de ambiente relevantes, como as configurações de banco de dados.
 
-## Learning Laravel
+`cp .env.example .env`
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Com o arquivo de variáveis de ambiente configurado, é necessário preencher a chave de criptografia da aplicação, que é usada para proteger os dados criptografados.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+`php artisan key:generate`
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Com o ambiente instalado e configurado, precisamos migrar as migrations para o banco de dados com o comando abaixo.
 
-## Laravel Sponsors
+`php artisan migrate`
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Por fim, podemos executar o projeto e acessar no navegador, por padrão a url de acesso é http://localhost:8000.
 
-### Premium Partners
+`php artisan serve`
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+## Endpoints
 
-## Contributing
+De acordo com os requisitos do projeto, foram desenvolvidos dois endpoints para consulta das informações necessárias. Segue exemplo de uso com o [Postman](https://www.postman.com/anthonyleier/workspace/pblico/collection/24415316-e8e4f5b1-781b-4c67-9c6f-b197888692be?action=share&creator=24415316).
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+| Método | Endpoint          | Descrição                                                                                                                                   |
+| ------ | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| GET    | /api/notas/{cnpj} | Retorna uma lista com todos os cálculos realizados para este usuário (valor_total, valor_ja_entregue, valor_nao_entregue e valor_em_atraso) |
+| GET    | /api/notas        | Retorna a lista agrupada por CNPJ de todas as notas e suas informações                                                                      |
 
-## Code of Conduct
+## Extras
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+No desenvolvimento da aplicação, além dos endpoints necessários para cumprir a tarefa proposta, também optei por desenvolver um CRUD de Usuários e Pagamentos. No entanto, após uma análise mais aprofundada do escopo do desafio, concluí que não fazia sentido incluí-los no projeto principal, mas deixo disponível para utilização caso queiram. Devo lembrar que o uso desses endpoints, necessita do banco de dados configurado.
 
-## Security Vulnerabilities
+### Usuários
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+| Método | Endpoint           | Descrição                                        |
+| ------ | ------------------ | ------------------------------------------------ |
+| POST   | /api/usuarios      | Cria um novo usuário                             |
+| GET    | /api/usuarios      | Lista todos os usuários                          |
+| GET    | /api/usuarios/{id} | Obtém os detalhes de um usuário específico       |
+| PATCH  | /api/usuarios/{id} | Atualiza as informações de um usuário específico |
+| DELETE | /api/usuarios/{id} | Exclui um usuário específico                     |
 
-## License
+### Pagamentos
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+| Método | Endpoint             | Descrição                                          |
+| ------ | -------------------- | -------------------------------------------------- |
+| POST   | /api/pagamentos      | Cria um novo pagamento                             |
+| GET    | /api/pagamentos      | Lista todos os pagamentos                          |
+| GET    | /api/pagamentos/{id} | Obtém os detalhes de um pagamento específico       |
+| PATCH  | /api/pagamentos/{id} | Atualiza as informações de um pagamento específico |
+| DELETE | /api/pagamentos/{id} | Exclui um pagamento específico                     |
+
+## Requisitos
+
+-   Desenvolver em Laravel versão 6.0 ou superiores.
+-   Utilizar Github para entrega do código.
+-   Gerar uma collection no Postman, Swagger ou similares, para documentar sua API.
+-   Entregar uma documentação com todos os passos para executar seu projeto e link do github.
+
+## Tarefas
+
+-   Agrupar as notas por remetente.
+-   Calcular o valor total das notas para cada remetente.
+-   Calcular o valor que o remetente irá receber pelo que já foi entregue.
+-   Calcular o valor que o remetente irá receber pelo que ainda não foi entregue.
+-   Calcular quanto o remetente deixou de receber devido ao atraso na entrega.
+-   Gerar uma API com as informações de retorno.
+-   Fazer controle de retorno com HTTP Response e HTTP Status Code.
+
+## API Disponibilizada
+
+A API está disponível em http://homologacao3.azapfy.com.br/api/ps/notas, onde os campos necessários estão exemplificados abaixo. Além disso, é importante lembrar que para o remetente receber por um produto, é necessário que o documento esteja entregue (COMPROVADO) e que a entrega tenha sido feita em no máximo dois dias após a sua data de emissão.
+
+| Campo       | Descrição                                                                                                                                     |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| chave       | Identificador único de uma nota fiscal                                                                                                        |
+| numero      | Número da nota fiscal                                                                                                                         |
+| cnpj_remete | Cnpj do distribuidor                                                                                                                          |
+| nome_remete | Nome do distribuidor                                                                                                                          |
+| cnpj_transp | Cnpj do transportador                                                                                                                         |
+| nome_transp | Nome do transportador                                                                                                                         |
+| dest        | Objeto com todas as informações do destinatário da entrega, o index “cod” é o identificador único do destinatário, podendo ser um cpf ou cnpj |
+| status      | Status da nota define se o documento já foi entregue ou não (Aberto/Comprovado)                                                               |
+| volumes     | Quantidade de volumes a ser entregue                                                                                                          |
+| valor       | Valor o qual o destinatário pagará ao distribuidor pelo produto                                                                               |
+| dt_emis     | Data de emissão do documento                                                                                                                  |
+| dt_entrega  | Data de entrega da mercadoria                                                                                                                 |
