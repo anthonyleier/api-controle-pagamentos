@@ -7,23 +7,25 @@ use App\Services\ApiAzapfyService;
 use Exception;
 
 class NotaController extends Controller {
+    public function __construct() {
+        $this->service = new ApiAzapfyService();
+    }
+
     public function index() {
         try {
-            $service = new ApiAzapfyService();
-            $dados = $service->getAgrupamentoNotasPorCNPJ();
-
-            if ($dados) {
-                return response()->json($dados);
-            } else {
-                return response()->json(['erro' => 'Falha na comunicação com API Azapfy'], 500);
-            }
-
+            $dados = $this->service->getAgrupamentoNotasPorCNPJ();
+            return response()->json($dados);
         } catch (Exception $e) {
-            return response()->json(['erro' => $e->getMessage()], 500);
+            return response()->json(['Ocorreu um erro no processamento das informações' => $e->getMessage()], 500);
         }
     }
 
-    public function show(string $id) {
-        //
+    public function show(string $cnpj) {
+        try {
+            $valores = $this->service->getValores($cnpj);
+            return response()->json($valores);
+        } catch (Exception $e) {
+            return response()->json(['Ocorreu um erro no processamento das informações' => $e->getMessage()], 500);
+        }
     }
 }
