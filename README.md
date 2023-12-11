@@ -1,6 +1,6 @@
-# Azapfy Desafio
+# API Controle Pagamentos
 
-O Azapfy é uma empresa que transforma a gestão da entrega e comprovação, que hoje são totalmente manuais, em processos automatizados de alta performance e controle. Garantindo que elas recebam por o serviço realizado, no menor prazo possível, com o menor custo de operação e ainda identificando em real time todas as etapas do processo. Nesse teste você irá desenvolver uma API que faz controle de pagamento pelas entregas realizadas. Disponibilizamos uma API onde você irá consultar as notas fiscais para realizar o cálculo de pagamento.
+Desenvolvimento de uma API que faz controle de pagamento pelas entregas realizadas.
 
 ## Instalação
 
